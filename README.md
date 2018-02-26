@@ -18,6 +18,6 @@ The objective is to implement a small peer to peer network for blockchainlittle.
 
 
 
-[1] [bogotobogo.com - Python Network Programing](http://tutorials.jenkov.com/p2p/index.html)
+[1] [bogotobogo.com - Python Network Programing](http://www.bogotobogo.com/python/python_network_programming_server_client.php)
 
 [2] [tutorials.jenkov.com - P2P Networks](http://tutorials.jenkov.com/p2p/index.html)

@@ -24,7 +24,7 @@ def Main():
 
     try:
         HOST = input('Server ip > ')
-        port = input('Conection port >')
+        port = int(input('Conection port >'))
         # We connecto to the server
         clientsocket.connect((HOST, port))
 

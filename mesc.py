@@ -11,7 +11,14 @@ def Main():
 
 
     HOST = input('Server ip > ')
-    port = int(input('Conection port >'))
+    if HOST == '':
+        HOST = 'FireLink'
+        print('default : ' +str(HOST) )
+    port = input('Conection port >')
+    if port == '':
+        port = 9876
+    print('default : ' + str(port))
+    port = int(port)
     # We connecto to the server
     clientsocket.connect((HOST, port))
 

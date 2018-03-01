@@ -1,71 +1,38 @@
-# multy_ser.py
-# Done without erro handling, becouse it is messy to read
-
+# Server, recieves conections form clients
 
 import socket
-import threading
-import sys
+
+class Server():
+    """Funcitonality of the server in this"""
+    def __init__(self, host='', port=9876, backlog=5):
+        self.host = host
+        self.port = port
+        self.backlog = backlog
+        self.s = 0 # Will hold the socket instance
 
 
-class clientconnection():
-    """This class handles the connections from different clients, accepts the connection with the client"""
-    def __init__(self, serversocket):
-        self.serversocket = serversocket
-        self.conn = 0
-        self.addr = 0
-        global shutdown
-        self.conn, self.addr = self.serversocket.accept()
-        print('Connection established with %s' % str(self.addr))
+    def deploy(self):
+        """Opens the server and binds the socket to the port, starts listening"""
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.setsockopt( socket.SOL_SOCKET, socket.SO_REUSEADDR, 1 )
+        self.s.bind((self.host, self.port))
+        self.s.listen(self.backlog)
+        return 1
 
+    def printaddress(self):
+        print('Server adress \'%s\':%s' % (str(self.host), str(self.port)))
+        return 1
 
-def s2c(client):
-    """Handles outgoing messages"""
-    conn = client.conn
-    while not shutdown:
-        data = input(" > ")
-        conn.send(data.encode())
-
-
-def c2s(client):
-    """Handles incoming messages"""
-    global shutdown
-    conn = client.conn
-    while not shutdown:
-        data = conn.recv(1024).decode()
-        if not data:
-            break
-        print('From Connected User: ' + str(data))
-
-def main():
-    global shutdown
-    # We open a TCP socket
-    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    print('Socket initialized.')
-
-    HOST = ''       # General host for all available interfaces
-    port = 9876     # Generic un-privileged port
-
-    # Bind the socket to the port
-    serversocket.bind((HOST, port))
-
-    print('Socket bind to %s:%s.' % (str(HOST), str(port)))
-
-    # Opening to listen
-    serversocket.listen(5)
-    print('Socket listening to %s:%s.' % (str(HOST), str(port)))
-
-    # Aquiring the client connection
-    client = clientconnection(serversocket)
-
-    # Starting the conversation
-    threading.Thread(s2c(client))
-    threading.Thread(c2s(client))
-    serversocket.close()
-    print('Exiting')
-    return 0
+    def shutdownserver(self):
+        if self.s != 0:
+            self.s.close()
+            print('Socket Closed...')
+        print('Shutting down...')
 
 
 if __name__ == '__main__':
-    shutdown = False
-    main()
+    server = Server(port=6009)
+    server.deploy()
+    server.printaddress()
+    server.shutdownserver()
+    print(' ')

@@ -1,6 +1,13 @@
 # client.py  
 import socket
 
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("www.google.com", 80))
+serverhost = s.getsockname()[0]
+print(serverhost)
+s.close()
+
 # create a socket object
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 
@@ -17,3 +24,5 @@ tm = s.recv(1024)
 s.close()
 
 print("The time got from the server is %s" % tm.decode('ascii'))
+
+

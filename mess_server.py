@@ -67,16 +67,16 @@ def Main():
         print('Failed to connect to clients . Type Error code: %s . Exiting...' % msg)
         sys.exit()
 
+
     while not shutdown:
         try:
             print('Connection from : %s' % str(addr))
             data = conn.recv(1024).decode()
-            print('1')
             if not data:
                 break
             print('From Connected User: ' + str(data))
             data = input(" > ")
-            conn.send(data.encode())
+            conn.senda(data.encode())
         except KeyboardInterrupt:
             shutdown = True
             print('Keyboard Interrupt. Shuting Down...')

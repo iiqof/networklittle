@@ -15,7 +15,8 @@ Short term objective is to implement simple and minimalistic peer to peer messag
 ## RoadMap
 *This road-map is expanded and deepened while I learn new things*
 
-1. First implement and understand the clips on [
+1. First implement and understand some of the clips on [1]
+2. Establish a comunication channel between two computers in the same LAN.
 2. Implement a simple messaging peer, capable to message to one other peer. 
 3. Implement a messaging peer to peer network following Jenkov's tutorial 
 
@@ -27,4 +28,6 @@ Short term objective is to implement simple and minimalistic peer to peer messag
 
 [2] [tutorials.jenkov.com - P2P Networks](http://tutorials.jenkov.com/p2p/index.html)
 
-[3] [docs.python.org - HowTo sockets]https://docs.python.org/3/howto/sockets.html
+[3] [docs.python.org - HowTo sockets](https://docs.python.org/3/howto/sockets.html)
+
+[4] [Berry College - CS Nadeem A. Hamind Course on P2P Networks](http://cs.berry.edu/%7Enhamid/p2p/)
